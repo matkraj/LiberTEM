@@ -340,7 +340,7 @@ def _get_norm(result, norm_cls=colors.Normalize):
     # can be accomplished by calculating min/max over are that was
     # affected by the result tiles. for now, ignoring 0 works fine
     result = result.astype(np.float32)
-    max_ = np.max(result)
+    max_ = np.max(result[:-1,:-1]) # do not use last line - flyback pixel
     min_ = 0
     result_ne_zero = result[result != 0]
     if len(result_ne_zero) > 0:
